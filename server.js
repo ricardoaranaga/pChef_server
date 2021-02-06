@@ -7,12 +7,11 @@ var jsonDiff = require('json-diff');
 var async = require('async');
 const dgram = require("dgram");
 // Certification for https
-var privateKey = fs.readFileSync( '../../../privatekey.pem' );
-var certificate = fs.readFileSync( '../../../server.crt' );
+var privateKey = fs.readFileSync( 'privatekey.pem' );
+var certificate = fs.readFileSync( 'server.crt' );
 // Debugging purposes
 var DEBUG = false;
 
-// ToDo: switch to default password
 // Create mysql connection with parameters 
 var sqlCon = mysql.createConnection({
     host:'localhost',
