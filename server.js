@@ -74,14 +74,20 @@ app.post("/possible", (req, res) => {
                   // If we are at the end of the recipe database, we send the results to the phone
                   if(rowsCounter == rows.length) {
                       if(DEBUG) console.log(JSON.stringify(possibleRecipes)); // -> Debugging purposes
-                      res.end(JSON.stringify(possibleRecipes)); // -> positive response to the phone
+                      
+                      if(possibleRecipes.length == 0) {
+                        res.status(500).send({ error: "no recipes available" }); // -> negative response
+                      }
+                      else {
+                        res.end(JSON.stringify(possibleRecipes)); // -> positive response to the phone
+                      }  
                   }
                   rowsCounter++; // increase row count
                     
               }
               else {
                   if(DEBUG) console.log('no recipes available'); // -> Debugging purposes 
-                  res.end(JSON.stringify('no recipes available')); // -> negative response to the phone
+                  rres.status(500).send({ error: "no recipes available" }); // -> negative response
               }
 
               callback();
