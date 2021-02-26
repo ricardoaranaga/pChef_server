@@ -5,6 +5,7 @@ let should = chai.should();
 
 const { expect } = chai;
 
+// testing of REST API requests 
 chai.use(chaiHttp);
 describe("REST API tests", () => {
     describe("/possible POST request", () => {

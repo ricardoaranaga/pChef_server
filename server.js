@@ -29,6 +29,8 @@ app.use(express.urlencoded({extended: true}));
 
 ////////////////////////////////// POST commands ///////////////////////////////////////////
 
+/* POST request: /upload: recieves JSON Array of new recipe from phone and returns a 
+status code for confirmation */
 app.post("/upload", (req, res) => {
   try { var myItemsJSON = JSON.parse(req.body.upload); } catch(e) { var myItemsJSON = req.body; }
   var query = "INSERT INTO RECIPE (RName, Description, Instructions) VALUES('"+myItemsJSON.RecipeName+"', '"+myItemsJSON.Description+"', '"+myItemsJSON.Instructions+"');";
