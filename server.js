@@ -31,8 +31,8 @@ app.use(express.urlencoded({extended: true}));
 app.post("/upload", (req, res) => {
   try { var myItemsJSON = JSON.parse(req.body.upload); } catch(e) { var myItemsJSON = req.body; }
   var query = "select * from RECIPE;";
-  console.log("------------------UPLOAD------------------")
-  console.log(myItemsJSON)
+  if(DEBUG) console.log("------------------UPLOAD------------------")
+  if(DEBUG) console.log(myItemsJSON)
   sqlCon.query(query,function(error,rows,fields){
     sqlCon.on('error',function(err){
         console.log('[MYSQL]ERROR',err);
@@ -49,8 +49,8 @@ app.post("/upload", (req, res) => {
 JSON Array of possible recipes that can be prepared based on the remote DB */ 
 app.post("/possible", (req, res) => {
   try { var myItemsJSON = JSON.parse(req.body.possible); } catch(e) { var myItemsJSON = req.body; }
-  console.log("------------------GENERATE------------------")
-  console.log(myItemsJSON)
+  if(DEBUG) console.log("------------------GENERATE------------------")
+  if(DEBUG) console.log(myItemsJSON)
   var query = "select * from RECIPE;"; // -> initial query to get all recipes from database       
   var possibleRecipes = []; // -> initialize an array for storing recipes 
   var rowsCounter = 1; // -> this keeps track the ID of the recipe
